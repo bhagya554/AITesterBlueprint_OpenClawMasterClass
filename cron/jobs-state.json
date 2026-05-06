@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "jobs": {
+    "8cebcd5e-c680-4ef3-a41f-56b2dbbf2a3d": {
+      "updatedAtMs": 1778066477999,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"every\",\"everyMs\":30000,\"anchorMs\":1777981185343}}",
+      "state": {
+        "nextRunAtMs": 1778066507995,
+        "lastRunAtMs": 1778066477995,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 4,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
+      }
+    }
+  }
+}

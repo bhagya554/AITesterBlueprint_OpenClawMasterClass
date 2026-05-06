@@ -1,0 +1,28 @@
+# Ignore sensitive data
+credentials/
+identity/
+
+# Ignore authentication
+auth-profiles.json
+auth-state.json
+
+# Ignore logs and history
+logs/
+memory/
+completions/
+
+# Ignore media and large temporary files
+media/
+browser/
+devices/
+canvas/
+
+# Ignore local execution state and backups
+exec-approvals.json
+*.bak
+*.bak.*
+*.last-good
+update-check.json
+
+# Ignore nested workspaces
+workspace/

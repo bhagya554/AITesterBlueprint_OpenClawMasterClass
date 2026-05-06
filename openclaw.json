@@ -1,0 +1,130 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "C:\\Users\\91733\\.openclaw\\workspace",
+      "models": {
+        "kimi/kimi-code": {
+          "alias": "Kimi"
+        }
+      },
+      "model": {
+        "primary": "kimi/kimi-code"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "f0a7b2b199ef1055846facfbaf6caaebed7d888ea08ce6df"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "provider": "kimi",
+        "enabled": true
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      },
+      "kimi": {
+        "enabled": true
+      },
+      "moonshot": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "sk-kimi-Q6BcWlgGI0iCxhxoVsVOPdYCSbeWse9G5ZyXwIEU3iEq7iHzxWyafe9ZMejXvqiE"
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "kimi:default": {
+        "provider": "kimi",
+        "mode": "api_key"
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "botToken": "8354896160:AAH73n2VK7Fr1l5rEGVIcCRNvw0qYrEIJnw"
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi": {
+        "baseUrl": "https://api.kimi.com/coding/",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "kimi-code",
+            "name": "Kimi Code",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-05-04T14:55:32.815Z",
+    "lastRunVersion": "2026.5.3-1",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.3-1",
+    "lastTouchedAt": "2026-05-04T14:55:34.191Z"
+  }
+}

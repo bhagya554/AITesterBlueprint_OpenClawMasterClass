@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "8cebcd5e-c680-4ef3-a41f-56b2dbbf2a3d",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "dashboard-deploy-monitor",
+      "enabled": true,
+      "createdAtMs": 1777981185343,
+      "schedule": {
+        "everyMs": 30000,
+        "kind": "every",
+        "anchorMs": 1777981185343
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DASHBOARD_CHECK_DEPLOYS: Check deploy-trigger.json for pending agent deployments. Read the file, if agent field is non-empty and status is pending, spawn the appropriate subagent for testing. Update dashboard-state.json with deploying status."
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {}
+    }
+  ]
+}
