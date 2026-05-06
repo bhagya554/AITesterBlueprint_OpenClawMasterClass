@@ -1,0 +1,38 @@
+{
+  "project": "app.vwo.com",
+  "status": "Test Plans Created",
+  "agents": {
+    "GanguBhai": {
+      "status": "active",
+      "task": "Web Test Plan - 15 major categories, 200+ test cases",
+      "progress": "100%",
+      "current": "Authentication & Authorization testing"
+    },
+    "Chotu": {
+      "status": "active",
+      "task": "Mobile Test Plan - 7 categories, 50+ test cases",
+      "progress": "100%",
+      "current": "Touch interactions & responsive testing"
+    },
+    "Munna": {
+      "status": "active",
+      "task": "Performance Test Plan - 6 scenarios, SLA validation",
+      "progress": "100%",
+      "current": "Load testing baseline establishment"
+    },
+    "PostmanKaka": {
+      "status": "active",
+      "task": "API Test Plan - 8 categories, 100+ endpoints",
+      "progress": "100%",
+      "current": "Authentication & Campaign API validation"
+    }
+  },
+  "phases": [
+    {"phase": "Smoke Testing", "day": 1, "status": "ready"},
+    {"phase": "Functional Testing", "day": "2-5", "status": "ready"},
+    {"phase": "Integration Testing", "day": 6, "status": "ready"},
+    {"phase": "Performance Testing", "day": "7-8", "status": "ready"},
+    {"phase": "Security Testing", "day": 9, "status": "ready"},
+    {"phase": "Regression & UAT", "day": 10, "status": "ready"}
+  ]
+}

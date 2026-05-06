@@ -1,0 +1,198 @@
+{
+  "info": {
+    "name": "VWO API Smoke Tests",
+    "description": "PostmanKaka - API Smoke Test Collection for app.vwo.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', () => {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Response time < 1s', () => {",
+              "  pm.expect(pm.response.responseTime).to.be.below(1000);",
+              "});",
+              "pm.test('Body contains healthy status', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.status).to.eql('healthy');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login - Valid",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{test_email}}\",\"password\":\"{{test_password}}\"}"
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
+              "pm.test('Has access token', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.accessToken).to.exist;",
+              "  pm.expect(json.refreshToken).to.exist;",
+              "  pm.environment.set('access_token', json.accessToken);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login - Invalid",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"wrong@test.com\",\"password\":\"wrong\"}"
+        },
+        "url": "{{base_url}}/auth/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 401', () => pm.response.to.have.status(401));",
+              "pm.test('Error message correct', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.error).to.include('Invalid');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Campaigns - Authenticated",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": "{{base_url}}/campaigns?page=1&limit=10"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
+              "pm.test('Response is array with meta', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.data).to.be.an('array');",
+              "  pm.expect(json.meta).to.exist;",
+              "  pm.expect(json.meta.total).to.exist;",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Campaigns - No Auth",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/campaigns"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 401', () => pm.response.to.have.status(401));",
+              "pm.test('Auth required message', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.error).to.include('Authentication required');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Campaign",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Postman Test Campaign\",\"type\":\"ab\",\"url\":\"https://example.com\"}"
+        },
+        "url": "{{base_url}}/campaigns"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 201', () => pm.response.to.have.status(201));",
+              "pm.test('Campaign created with ID', () => {",
+              "  const json = pm.response.json();",
+              "  pm.expect(json.id).to.exist;",
+              "  pm.expect(json.status).to.eql('draft');",
+              "  pm.environment.set('campaign_id', json.id);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delete Campaign",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": "{{base_url}}/campaigns/{{campaign_id}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 204', () => pm.response.to.have.status(204));"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "https://app.vwo.com/api/v3" },
+    { "key": "test_email", "value": "api-test@vwo.internal" },
+    { "key": "test_password", "value": "TestPass123!" }
+  ]
+}

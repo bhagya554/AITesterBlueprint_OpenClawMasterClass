@@ -1,0 +1,12 @@
+Browser,OS,Version,Priority,Notes
+Chrome,Windows 11,134,1,Primary development browser
+Chrome,Windows 10,133,1,Enterprise user base
+Chrome,macOS Sonoma,134,1,Design team primary
+Firefox,Windows 11,136,1,Gecko layout engine
+Firefox,macOS Sonoma,136,1,Font rendering differences
+Safari,macOS Sonoma,17.6,1,WebKit engine
+Safari,iOS 17,iPhone 15,1,Mobile WebKit
+Edge,Windows 11,134,1,Enterprise default
+Chrome,Android 14,134,2,Mobile Chrome
+Safari,iPadOS 17,iPad Pro,2,Tablet WebKit
+Firefox ESR,Windows 10,128,2,Government/enterprise

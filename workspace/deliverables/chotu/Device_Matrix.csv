@@ -1,0 +1,10 @@
+Device,OS,OS_Version,Screen_Size,Viewport,Browser,Priority,Notes
+iPhone 15 Pro,iOS,17.6,6.1in,393x852,Safari,1,OLED 120Hz
+iPhone 14,iOS,16.7,6.1in,390x844,Safari,1,Standard flagship
+iPhone SE 3rd,iOS,16.7,4.7in,375x667,Safari,2,Small viewport critical
+iPad Pro 12.9,iPadOS,17.6,12.9in,1024x1366,Safari,1,Tablet primary
+Samsung Galaxy S24,Android,14,6.2in,384x824,Chrome,1,Flagship Android
+Google Pixel 8,Android,14,6.2in,412x915,Chrome,1,Stock Android reference
+Samsung Galaxy A54,Android,14,6.4in,412x915,Chrome,2,Mid-range performance
+Xiaomi Redmi Note 13,Android,14,6.67in,393x873,MIUI Browser,2,Regional browser quirks
+OnePlus 12,Android,14,6.82in,412x915,Chrome,2,High refresh rate
